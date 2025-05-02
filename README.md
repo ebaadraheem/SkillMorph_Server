@@ -41,6 +41,6 @@ STRIPE_CONNECT_WEBHOOK_SECRET=Your stripe connect webhook secret
 STRIPE_PAYMENT_WEBHOOK_SECRET=Your stripe payment webhook secret 
 
 ```bash
-git clone 
+git clone https://github.com/ebaadraheem/SkillMorph_Server.git
 cd skillmorph-server
 npm install
