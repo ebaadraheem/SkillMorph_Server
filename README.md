@@ -24,7 +24,7 @@ The SkillMorph Server is the backend API for the SkillMorph platform — a moder
 - Cloud Storage (e.g. Supabase Storage / Cloudinary)
 
 ---
-Add .env file 
+## Add .env file 
 DB_PASS=Your postgresql database password 
 DB_USER=Your postgresql database username 
 DB_HOST=Your postgresql database host 
@@ -40,7 +40,7 @@ STRIPE_SECRET_KEY=Your stripe secret key
 STRIPE_CONNECT_WEBHOOK_SECRET=Your stripe connect webhook secret
 STRIPE_PAYMENT_WEBHOOK_SECRET=Your stripe payment webhook secret 
 
-```bash
+ ## bash
 git clone https://github.com/ebaadraheem/SkillMorph_Server.git
 cd skillmorph-server
 npm install
