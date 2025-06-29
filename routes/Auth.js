@@ -8,6 +8,7 @@ const router = express.Router();
 const { sign, verify } = pkg1;
 const { hash, compare } = pkg2;
 
+
 // Register User
 router.post("/register", async (req, res) => {
   const { username, email, password } = req.body;
