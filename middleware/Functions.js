@@ -1,4 +1,5 @@
-import client from "../lib/db";
+import client from "../lib/db.js";
+import { HumanMessage, AIMessage, ToolMessage, SystemMessage } from "@langchain/core/messages";
 const addStudentEnrollment = async (student_id, course_id, amount_paid) => {
   try {
     // Insert the enrollment data into the database
@@ -35,5 +36,44 @@ const deleteStudentEnrollment = async (student_id, course_id) => {
     return { error: error.message };
   }
 };
+// Helper function to convert custom state messages to LangChain message objects
+function convertToLangChainMessages(messages) {
+  return messages
+    .map((msg) => {
+      if (msg.role === "system") {
+        return new SystemMessage({ content: msg.content });
+      } else if (msg.role === "human") {
+        return new HumanMessage({ content: msg.content });
+      } else if (msg.role === "assistant") {
+        return new AIMessage({
+          content: msg.content,
+          tool_calls: msg.tool_calls,
+        });
+      } else if (msg.role === "tool") {
+        try {
+          const resultData = JSON.parse(msg.content);
 
-export { addStudentEnrollment, deleteStudentEnrollment };
+          return new ToolMessage({
+            content: resultData.result
+              ? JSON.stringify(resultData.result)
+              : msg.content,
+            toolCallId: resultData.id || "unknown-id", 
+            name: resultData.tool || "course_db_tool", 
+          });
+        } catch (e) {
+          console.error("Error parsing tool message content in conversion:", e);
+          return new SystemMessage({
+            content: `Tool execution failed: ${msg.content}`,
+          });
+        }
+      }
+      return null;
+    })
+    .filter(Boolean); 
+}
+
+export {
+  addStudentEnrollment,
+  deleteStudentEnrollment,
+  convertToLangChainMessages,
+};

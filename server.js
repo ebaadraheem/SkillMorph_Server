@@ -7,6 +7,7 @@ import Auth from "./routes/Auth.js";
 import User from "./routes/User.js";
 import Videos from "./routes/Videos.js";
 import Payment from "./routes/Payment.js";
+import Chat from "./routes/Chat.js";
 import Webhooks from "./routes/Webhooks.js";
 import corsOptions from "./middleware/Cors.js";
 import bodyParser from "body-parser";
@@ -39,6 +40,7 @@ app.use("/course", Courses);
 app.use("/user", User);
 app.use("/videos", Videos);
 app.use("/payment", Payment);
+app.use("/chat", Chat);
 
 // Start the Server
 app.listen(port, () => {

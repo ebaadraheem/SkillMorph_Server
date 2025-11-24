@@ -11,6 +11,9 @@
   "license": "ISC",
   "description": "This is the server for the SkillMorph project.It is a RESTful API that will be used to interact with the database.",
   "dependencies": {
+    "@langchain/core": "^1.0.6",
+    "@langchain/google-genai": "^1.0.3",
+    "@langchain/langgraph": "^1.0.2",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.3",
     "cloudinary": "^1.41.3",
